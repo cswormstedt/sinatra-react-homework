@@ -31,17 +31,27 @@ class PlacesController < ApplicationController
 	    response['Access-Control-Allow-Origin'] = '*'
 	    content_type :json
 
-	    puts JSON.parse(request.body.read.to_s)
+	    data = JSON.parse(request.body.read)
+	    p '--------------------'
+	    puts data 
+	   
 	    @place = Place.new
-	    @place.city = JSON.parse(request.body.read.to_s)
-	    @place.country = JSON.parse(request.body.read.to_s)
+	    @place.city = data["city"]
+
+	    # params[:city]
+	    # 
+	    @place.country = data["country"]
+	    # params[:country]
+	    # 
 	    @place.save
 
 	    @places = Place.all
 	    @places.to_json
-  	end
+
+	end
 
   	patch '/:id' do
+  		response['Access-Control-Allow-Origin'] = '*'
 	    content_type :json
 
 	    id = params[:id]
@@ -56,6 +66,7 @@ class PlacesController < ApplicationController
 	end
 
 	delete '/:id' do
+		response['Access-Control-Allow-Origin'] = '*'
 	    content_type :json
 
 	    id = params[:id]
