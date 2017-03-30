@@ -1,0 +1,5 @@
+CREATE DATABASE trips;
+
+\c trips 
+
+CREATE TABLE places(id SERIAL PRIMARY KEY, city VARCHAR(255), country VARCHAR(255));
