@@ -18,11 +18,11 @@ var MainComponent = React.createClass({
       })
   },
 
-  createItem: function(item){
+  createItem: function(place){
     var state = this.state;
     var self = this;
     request.post('http://localhost:9393/places')
-      .send("city=" + item, "country" + item)
+      .send("city=" + place, "country" + place)
       .end(function(err, data){
         console.log(data);
       })
@@ -66,9 +66,12 @@ var FormComponent = React.createClass({
       </div>
     )
   },
-  updateValue: function(event){
+  updateCity: function(event){
     this.setState({inputCity: event.target.value})
-    this.setState({inputCountry: event.target.value})
+  },
+
+  updateCountry: function(event){
+  	this.setState({inputCountry: event.target.value})
   }
 })
 
